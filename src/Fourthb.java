@@ -3,6 +3,7 @@
     import java.util.Arrays;
             import java.util.List;
     import java.util.stream.Collectors;
+    import java.util.stream.Stream;
 
     class Employee{
         String fullName;
@@ -19,16 +20,20 @@
 
     public class Fourthb {
     public static void main(String[] args) {
-        Employee[] e=new Employee[5];
-        e[0]=new Employee("Yasu Yasamina Yas",2000,"SGNR");
-        e[1]=new Employee("Kenny Chesling Somewhere",3000,"Chandigarh");
-        e[2]=new Employee("Kelly Clarkson Stronger",20000,"Ohio");
-        e[3]=new Employee("Ross Manuco Rude",8000,"Hawaii");
-        e[4]=new Employee("Zooey Deschanel New",1000,"Delhi");
-//        List<String> result = e.stream().filter(x -> {x.salary<5000&&x.city=="Delhi"})
-//                .collect(Collectors.toList());
+        Employee[] employees=new Employee[5];
+        employees[0]=new Employee("Yasu Yasamina Yas",2000,"SGNR");
+        employees[1]=new Employee("Kenny Chesling Somewhere",3000,"Chandigarh");
+        employees[2]=new Employee("Kelly Clarkson Stronger",2000,"Delhi");
+        employees[3]=new Employee("Kishore Kumar",4000,"Delhi");
+        employees[4]=new Employee("Kishore Sharma New",1000,"Delhi");
 
-        result.forEach(word -> System.out.println(word));
+        System.out.println(Stream.of(employees)
+                .filter(e-> e.salary<5000 && e.city.equals("Delhi") )
+                .map(e->e.fullName.split(" ")[0]).collect(Collectors.toSet()));;
+//       Stream.of(employees)
+//                .filter(e-> e.salary<5000 && e.city.equals("Delhi") ).forEach(System.out::println);
+
+
 
     }
 }
